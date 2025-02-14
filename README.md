@@ -218,7 +218,7 @@ hadoop fs -put ./input2.txt /input/dataset
 
 hadoop fs -put ./input3.txt /input/dataset
 
-hadoop jar /opt/hadoop-3.2.1/share/hadoop/mapreduce/DocumentSimilarity-0.0.1-SNAPSHOT.jar com.example.controller.DocumentSimilarityDriver /input/dataset/ /output
+hadoop jar /opt/hadoop-3.2.1/share/hadoop/mapreduce/DocumentSimilarity-0.0.1-SNAPSHOT.jar com.example.controller.DocumentSimilarityDriver /input/dataset /output
 
 hadoop fs -cat /output/*
 
