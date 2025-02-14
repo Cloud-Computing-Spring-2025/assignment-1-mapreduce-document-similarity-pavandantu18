@@ -192,24 +192,40 @@ This project computes the Jaccard similarity between text documents using Hadoop
 
 ## Step by step instructions
 docker compose up -d
+
 mvn install
+
 mv target/*.jar shared-folder/input/code/
+
 docker cp shared-folder/input/code/DocumentSimilarity-0.0.1-SNAPSHOT.jar resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
+
 docker cp shared-folder/input/data/input.txt resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
+
 docker cp shared-folder/input/data/input2.txt resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
+
 docker cp shared-folder/input/data/input3.txt resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
 
+
 docker exec -it resourcemanager /bin/bash
+
 cd /opt/hadoop-3.2.1/share/hadoop/mapreduce/
+
 hadoop fs -mkdir -p /input/dataset
+
 hadoop fs -put ./input.txt /input/dataset
+
 hadoop fs -put ./input2.txt /input/dataset
+
 hadoop fs -put ./input3.txt /input/dataset
 
 hadoop jar /opt/hadoop-3.2.1/share/hadoop/mapreduce/DocumentSimilarity-0.0.1-SNAPSHOT.jar com.example.controller.Controller /input/dataset/input.txt /output
+
 hadoop fs -cat /output/*
+
 hdfs dfs -get /output /opt/hadoop-3.2.1/share/hadoop/mapreduce/
+
 exit 
+
 docker cp resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/output/ shared-folder/output/
 
 ## Challenges & Solutions
