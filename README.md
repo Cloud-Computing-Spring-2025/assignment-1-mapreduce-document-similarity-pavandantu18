@@ -169,3 +169,55 @@ If you want to download the output to your local machine:
 hdfs dfs -get /output_final /path/to/local/output
 ```
 ---
+
+## Approach
+## Overview
+
+This project computes the Jaccard similarity between text documents using Hadoop MapReduce. Only document pairs with a similarity greater than 50% are output.
+
+## Approach
+
+- **Mapper:**  
+  - Reads each file (document) line by line using the default `TextInputFormat`.
+  - Uses the file name as the document ID (retrieved from the FileSplit in `setup()`).
+  - Aggregates all lines in `cleanup()`, tokenizes the text (lowercase & removes non-alphanumeric characters), and emits a single record in the format:
+    ```
+    DocumentID \t word1,word2,...
+    ```
+- **Reducer:**  
+  - Receives all documents with a constant key.
+  - Computes pairwise Jaccard similarity.
+  - Emits only document pairs with similarity > 50%.
+
+
+## Step by step instructions
+docker compose up -d
+mvn install
+mv target/*.jar shared-folder/input/code/
+docker cp shared-folder/input/code/DocumentSimilarity-0.0.1-SNAPSHOT.jar resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
+docker cp shared-folder/input/data/input.txt resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
+docker cp shared-folder/input/data/input2.txt resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
+docker cp shared-folder/input/data/input3.txt resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
+
+docker exec -it resourcemanager /bin/bash
+cd /opt/hadoop-3.2.1/share/hadoop/mapreduce/
+hadoop fs -mkdir -p /input/dataset
+hadoop fs -put ./input.txt /input/dataset
+hadoop fs -put ./input2.txt /input/dataset
+hadoop fs -put ./input3.txt /input/dataset
+
+hadoop jar /opt/hadoop-3.2.1/share/hadoop/mapreduce/DocumentSimilarity-0.0.1-SNAPSHOT.jar com.example.controller.Controller /input/dataset/input.txt /output
+hadoop fs -cat /output/*
+hdfs dfs -get /output /opt/hadoop-3.2.1/share/hadoop/mapreduce/
+exit 
+docker cp resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/output/ shared-folder/output/
+
+## Challenges & Solutions
+Multiple File Handling:
+Used the file name from FileSplit to uniquely identify documents.
+
+Content Aggregation:
+Accumulated lines in the mapper using StringBuilder and processed in cleanup().
+
+Similarity Filtering:
+Emitted only pairs with similarity > 50% in the reducer.
